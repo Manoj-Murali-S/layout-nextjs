@@ -5,14 +5,17 @@ import { usePathname } from "next/navigation";
 const navList = [
   { name: "home", href: "/" },
   { name: "login", href: "/login" },
+  { name: "Dashboard", href: "/dashboard" },
   { name: "register", href: "/register" },
   { name: "bill", href: "/bill" },
 ];
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const { open, setOpen } = props;
+
   const pathName = usePathname();
   return (
-    <ul className="flex border-b">
+    <ul className="flex border-b container mx-auto">
       {navList.map((nav) => {
         const isActive = pathName.startsWith(nav.href);
 
@@ -33,9 +36,16 @@ const Navbar = () => {
           </li>
         );
       })}
+
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-0 "
+      >
+        Slider
+      </button>
     </ul>
   );
 };
 
 export default Navbar;
-
